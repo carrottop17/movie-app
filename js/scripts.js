@@ -11,6 +11,8 @@ $(document).ready(function(){
 	// after the / comes the width imageBaseUrl + 'w300' + poster_path
 	var apiKey = '?api_key=fec8b5ab27b292a68294261bb21b04a5';
 	var npUrl = apiBaseUrl + 'movie/nowPlayingData' + apiKey;
+
+	
 	
 
 	$('.search-form').submit(function(){
@@ -21,20 +23,31 @@ $(document).ready(function(){
 			console.log(nowPlayingData);
 			var npHTML = '';
 			for(var i = 0; i < nowPlayingData.results.length; i++){
+				npHTML += '<div class="col description" id="' + nowPlayingData.results[i].id + '">';
+					npHTML += nowPlayingData.results[i].overview;
+				npHTML += '</div>';
 				npHTML += '<div class="col">';
-					// npHTML += nowPlayingData.results[i].title;
 					if(nowPlayingData.results[i].poster_path == null){
 						var posterUrl = 'images/generic.jpg'
 					}else{
 						var posterUrl = imageBaseUrl + 'w300' + nowPlayingData.results[i].poster_path;
 					}
-					npHTML += '<img src="' + posterUrl + '">';
+					npHTML += '<img src="' + posterUrl + '" class="poster' + " " + nowPlayingData.results[i].id + '" movieId = '+nowPlayingData.results[i].id+'>';
 				npHTML += '</div>';
-
 			}
 			$('.poster-grid').html(npHTML);
+			
+			$(".poster").click(function(){
+    			// $(".description").toggle();
+    			var posterAttr = $(this).attr('movieId');
+    			// var posterID = ($(this)[0].classList[1]);
+    			$('#'+posterAttr).toggle();
+			});
+
 		});
 	});
+	
+
 
 	$.getJSON(apiBaseUrl + 'movie/now_playing' + apiKey, function(nowPlayingData){
 			console.log(nowPlayingData);
@@ -50,3 +63,4 @@ $(document).ready(function(){
 	});
 
 });
+

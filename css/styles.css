@@ -65,7 +65,7 @@ body .container .col {
   width: 300px;
   margin: auto 0px;
   float: left;
-  color: #000;
+  color: #fff;
 }
 
 /* line 31, ../compass/sass/styles.scss */
@@ -85,4 +85,13 @@ h2 {
 .search-form {
   text-align: center;
   margin: 50px;
+}
+
+/* line 47, ../compass/sass/styles.scss */
+.description {
+  display: none;
+  border: 1px solid #000;
+  width: 300px;
+  height: 450px;
+  z-index: 1;
 }
