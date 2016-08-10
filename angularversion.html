@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html ng-app="movieApp">
+<head>
+	<title></title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+
+	<script type="text/javascript" src="movieAngular.js"></script>
+
+	<style type="text/css" media="screen">
+		.bubble{
+			animation: pulse 1s infinite;
+			border: 5px solid white;
+		}
+
+		@keyframes pulse {
+ 		0%      { transform:scale(1); }
+ 		25%     { transform:scale(1.5); }
+ 		75%     { transform:scale(1); }
+		}
+		.headerStyles{
+			text-decoration: line-through;
+		}
+		img{
+			height: 450px;
+			width: 300px;
+		}
+		.header-wrapper{
+			text-align: center;
+			margin-bottom: 30px;
+		}
+
+	</style>
+</head>
+
+
+
+<body ng-style="{'background-color': 'black'}" ng-controller="movieController">
+	<div class="container">
+		<div class="header-wrapper" ng-style="{color: myStyle}">
+			<div class="row">
+				<h1 ng-hide="checked2" ng-class="{headerStyles: queryString}">Movie Search</h1>
+			</div>
+			<div class="row">
+				<form class="form-inline" ng-submit="getNewMovieStuff()">
+					<div class="form-group">
+						
+							<input type="text" class="form-control" placeholder="Movie Title" ng-model="queryString">
+							<button class="btn btn-primary" ng-model="under">Search</button>
+						
+					</div>
+				</form>
+				<input type="checkbox" ng-model="pulse"> Insane Mode
+				<!-- <button ng-click="queryString">Underline</button> -->
+				<input type="checkbox" ng-model="checked"> Remove Posters
+				<input type="checkbox" ng-model="checked2"> Remove Title
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<div ng-repeat="movie in movieArray | filter:queryString" class="col-sm-3 movie-poster">
+				<img ng-if="!checked" ng-class="{bubble: pulse}" ng-src="{{imagePath}}{{movie.poster_path}}">
+			</div>
+		</div>
+	</div>
+</body>
+</html>
