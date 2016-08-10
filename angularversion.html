@@ -49,6 +49,10 @@
 						
 							<input type="text" class="form-control" placeholder="Movie Title" ng-model="queryString">
 							<button class="btn btn-primary" ng-model="under">Search</button>
+							<select name="singleSelect" ng-model="data.singleSelect">
+      						<option value="option-1">Option 1</option>
+      						<option value="option-2">Option 2</option>
+    						</select>
 						
 					</div>
 				</form>
@@ -56,6 +60,7 @@
 				<!-- <button ng-click="queryString">Underline</button> -->
 				<input type="checkbox" ng-model="checked"> Remove Posters
 				<input type="checkbox" ng-model="checked2"> Remove Title
+
 			</div>
 		</div>
 	</div>
@@ -65,6 +70,7 @@
 			<div ng-repeat="movie in movieArray | filter:queryString" class="col-sm-3 movie-poster">
 				<img ng-if="!checked" ng-class="{bubble: pulse}" ng-src="{{imagePath}}{{movie.poster_path}}">
 			</div>
+			<button class="btn btn-danger" ng-click="nextPage()">Next Page</button>
 		</div>
 	</div>
 </body>
