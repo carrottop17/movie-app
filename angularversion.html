@@ -2,11 +2,29 @@
 <html ng-app="movieApp">
 <head>
 	<title></title>
-	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+		<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
+
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+	<script type="text/javascript" src="https://code.angularjs.org/1.5.8/angular-animate.min.js"></script>
+	<script type="text/javascript" src="https://code.angularjs.org/1.5.8/angular-cookies.min.js"></script>
+	<script type="text/javascript" src="https://code.angularjs.org/1.5.8/angular-route.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-aria.min.js"></script>
+	  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-messages.min.js"></script>
+
+	  <!-- Angular Material Library -->
+	  <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js"></script>
 	<script type="text/javascript" src="movieAngular.js"></script>
 
 	<style type="text/css" media="screen">
@@ -32,12 +50,28 @@
 			margin-bottom: 30px;
 		}
 
+		.dialogdemoBasicUsage #popupContainer {
+		  position: relative; }
+		.dialogdemoBasicUsage .footer {
+		  width: 100%;
+		  text-align: center;
+		  margin-left: 20px; }
+		.dialogdemoBasicUsage .footer, .dialogdemoBasicUsage .footer > code {
+		  font-size: 0.8em;
+		  margin-top: 50px; }
+		.dialogdemoBasicUsage button {
+		  width: 200px; }
+		.dialogdemoBasicUsage div#status {
+		  color: #c60008; }
+		.dialogdemoBasicUsage .dialog-demo-prerendered md-checkbox {
+		  margin-bottom: 0; }
+
 	</style>
 </head>
 
 
 
-<body ng-style="{'background-color': 'black'}" ng-controller="movieController">
+<body ng-style="{'background-color': 'black'}" ng-controller="movieController" id="popupContainer">
 	<div class="container">
 		<div class="header-wrapper" ng-style="{color: myStyle}">
 			<div class="row">
@@ -49,7 +83,7 @@
 						
 							<input type="text" class="form-control" placeholder="Movie Title" ng-model="queryString">
 							<button class="btn btn-primary" ng-model="under">Search</button>
-							<select name="singleSelect" ng-model="data.singleSelect">
+							<select name="genre" ng-model="movieGenre">
       						<option value="option-1">Option 1</option>
       						<option value="option-2">Option 2</option>
     						</select>
@@ -60,7 +94,6 @@
 				<!-- <button ng-click="queryString">Underline</button> -->
 				<input type="checkbox" ng-model="checked"> Remove Posters
 				<input type="checkbox" ng-model="checked2"> Remove Title
-
 			</div>
 		</div>
 	</div>
@@ -68,7 +101,7 @@
 	<div class="container">
 		<div class="row">
 			<div ng-repeat="movie in movieArray | filter:queryString" class="col-sm-3 movie-poster">
-				<img ng-if="!checked" ng-class="{bubble: pulse}" ng-src="{{imagePath}}{{movie.poster_path}}">
+				<img ng-click="showAlert($event)" ng-if="!checked" ng-class="{bubble: pulse}" ng-src="{{imagePath}}{{movie.poster_path}}">
 			</div>
 			<button class="btn btn-danger" ng-click="nextPage()">Next Page</button>
 		</div>
